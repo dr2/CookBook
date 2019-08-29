@@ -1,0 +1,65 @@
+<div class="row">
+	<div class="col-sm-12">
+		<form ng-submit="vm.submitFormRecipe()">
+
+			<div class="form-group" ng-class="{'has-error': vm.errors}">
+				<div class="alert alert-danger" ng-if="vm.errors">
+					<span ng-repeat="error in vm.errors">
+						{{ error }}
+					</span>
+				</div>
+				<input type="text" ng-model="vm.recipe.name" class="form-control" placeholder="Название">
+			</div>
+
+
+			<div class="form-group">
+				<textarea ng-model="vm.recipe.description" class="form-control" rows="10" placeholder="Описание"></textarea>
+			</div>
+
+			<h4>Ингредиенты:</h4>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-5">
+						<input type="text" ng-model="vm.newIngredient" uib-typeahead="state for state in vm.searchIngredient | filter:$viewValue | limitTo:8" class="form-control" placeholder="Название продукта">
+
+					</div>
+					<div class="col-sm-1">
+						<a class="btn btn-primary pull-right" ng-click="vm.addIngredient()" uib-tooltip="Добавить продукт в список">+</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-6">
+						<ul class="numeric">
+							<li ng-repeat="ingredient in vm.ingredients track by $index" class="margin-bottom-15">
+								{{ ingredient.name }}
+								<a ng-click="vm.delIngredient($index)" uib-tooltip="Удалить продукт"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Сохранить</button>
+			<a ui-sref="app.recipe" class="btn btn-default">Отмена</a>
+		</form>
+	</div>
+</div>
+
+
+<div class="custom-popup-wrapper"
+	 ng-style="{top: position().top+'px', left: position().left+'px'}"
+	 style="display: block;"
+	 ng-show="isOpen() && !moveInProgress"
+	 aria-hidden="{{!isOpen()}}">
+
+	<ul class="dropdown-menu" role="listbox">
+		<li class="uib-typeahead-match" ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }"
+			ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">
+		</li>
+	</ul>
+</div>

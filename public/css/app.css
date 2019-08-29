@@ -1,0 +1,35 @@
+.margin-bottom-15 {
+  margin-bottom: 15px;
+}
+
+.margin-top-30 {
+  margin-top: 15px;
+}
+
+
+
+
+.btn {
+  border-radius: 0;
+}
+.modal-content {
+  border-radius: 0;
+}
+.form-control {
+  border-radius: 0;
+}
+.dropdown-menu {
+  border-radius: 0;
+}
+.link {
+  cursor: pointer;
+}
+.glyphicon {
+  cursor: pointer;
+}
+.numeric {
+  list-style-type: decimal;
+}
+
+
+/*# sourceMappingURL=app.css.map */

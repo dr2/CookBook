@@ -1,0 +1,89 @@
+
+<div class="row margin-bottom-15">
+	<div class="col-sm-2">
+		<a class="btn btn-primary" ui-sref="app.create_recipe">Добавить новый рецепт</a>
+	</div>
+	<div class="col-sm-3">
+		<a class="btn btn-primary" ng-click="vm.getIngredientsFav()">Список Необходимых покупок</a>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<form>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-10">
+						<input class="form-control" placeholder="Поиск по названию блюда" ng-model="search.name">
+					</div>
+					<div class="col-sm-2 text-right">
+						<button type="button" class="btn btn-primary" ng-click="search.name = ''">Очистить форму</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th width="5%">Избранное</th>
+					<th width="65%">Название</th>
+					<th width="30%" class="text-right">Действие</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="recipe in vm.list | filter:search:name">
+					<td>
+						<input type="checkbox" ng-model="recipe.fav" ng-true-value="1" ng-false-value="0" ng-change="vm.editFav(recipe.id, recipe.fav)">
+					</td>
+					<td>
+						<a ng-click="isCollapsed = !isCollapsed" class="link">{{ recipe.name }}</a>
+						<div class="row">
+							<div class="col-sm-12">
+								<div uib-collapse="!isCollapsed">
+									<hr>
+									<p class="lead">Описание:</p>
+									<p>{{ recipe.description }}</p>
+									<hr>
+									<p class="lead">Ингредиенты:</p>
+									<ul class="numeric">
+										<li ng-repeat="ingredient in recipe.ingredients">
+											{{ ingredient.name }}
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</td>
+					<td class="text-right">
+						<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Подробнее</button>
+						<a class="btn btn-primary" ui-sref="app.edit_recipe({ id: recipe.id })">Редактировать</a>
+						<a class="btn btn-danger" ng-click="vm.delRecipeModal(recipe)">Удалить</a>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

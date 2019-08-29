@@ -1,0 +1,11 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="modal-title">Подтверждение:</h3>
+</div>
+<div class="modal-body" id="modal-body">
+	<p>Вы действительно хотите удалить рецепт?</p>
+	<b> {{ $ctrl.recipe.name}} </b>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-danger" type="button" ng-click="$ctrl.delete()">Удалить</button>
+	<button class="btn btn-default" type="button" ng-click="$ctrl.close()">Отмена</button>
+</div>
